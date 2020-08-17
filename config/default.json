@@ -10,13 +10,12 @@
         "routes": [
           {
             "method": "get",
-            "path": "/movie",
-            "timeout": 5
+            "path": "/movie"
           },
           {
             "method": "get",
             "path": "/movie/:id",
-            "timeout": 5
+            "auth": true
           }
         ]
       }

@@ -7,8 +7,39 @@ const {
 
 //Authentication middleware.
 const {
-  auth
-} = require('../middleware/auth.js');
+  authMid,
+  continueMid
+} = require('../middleware');
+
+/**
+ * Create a new router binding the method to the proxy.
+ * @param {object} route {path:'url endpoint',target:'redirect host'}
+ * @param {object} router express router.
+ * @returns {}
+ */
+const registerRoutes = (route, router) => {
+
+  const {
+    target,
+    endpoint,
+    routes
+  } = route;
+
+  //Register the host + path.
+  routes.forEach(pathObj => {
+
+    const {
+      method,
+      path,
+      auth
+    } = pathObj;
+
+    //Create the middleware, apply authentication is required.
+    router[method](endpoint + path, auth ? authMid : continueMid, newProxy(target, endpoint));
+
+  });
+
+}
 
 /**
  * Receive a list of path / target to make register the middlewares.
@@ -21,20 +52,10 @@ const bindRoutes = (map) => {
   const router = express.Router();
 
   //For each registered map host.
-  map.forEach(route => {
-
-    const {
-      target,
-      endpoint,
-      routes
-    } = route;
-
-    //Register the host + path.
-    routes.forEach(pathObj => router[pathObj.method](endpoint + pathObj.path, newProxy(target, route.endpoint)));
-
-  });
+  map.forEach(route => registerRoutes(route, router));
 
   return router;
+
 }
 
 module.exports = {

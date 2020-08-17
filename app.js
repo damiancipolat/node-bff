@@ -1,10 +1,12 @@
 const http = require('http');
 const express = require('express');
 const config = require('config');
+const morgan = require('morgan');
 
 //Creat the server.
 const app = express();
 const server = http.createServer(app);
+app.use(morgan("default"));
 
 //Get middlewares.
 const {
@@ -27,5 +29,6 @@ app.use('/', proxy(map));
 
 //On server listen.
 app.listen(port, () => {
-  console.log('Server started');
+  console.log('BFF - Server started');
+  console.log('Listen on port:' + port);
 });
