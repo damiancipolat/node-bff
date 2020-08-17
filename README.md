@@ -1,4 +1,4 @@
-# Node Backend for frontend
+# Node.js Backend for frontend
 A microservices example created with node.js using **express-http-proxy**.
 
 ### Install
