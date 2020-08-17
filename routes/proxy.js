@@ -2,7 +2,7 @@ const express = require('express');
 
 //Proxy builder.
 const {
-  proxy
+  newProxy
 } = require('../lib/proxy.js');
 
 //Authentication middleware.
@@ -20,15 +20,24 @@ const bindRoutes = (map) => {
   //Create the router.
   const router = express.Router();
 
-  //Append the middleware route in the express router.
-  map.forEach(route => (route && route.auth) ?
-    router.use(route.path, auth, proxy(route)) :
-    router.use(route.path, proxy(route)));
+  //For each registered map host.
+  map.forEach(route => {
+
+    const {
+      target,
+      endpoint,
+      routes
+    } = route;
+
+    //Register the host + path.
+    routes.forEach(pathObj => router[pathObj.method](endpoint + pathObj.path, newProxy(target, route.endpoint)));
+
+  });
 
   return router;
-
 }
 
 module.exports = {
   bindRoutes
 };
+

@@ -5,13 +5,20 @@
   "proxy": {
     "map": [
       {
-        "path": "/m1",
-        "target": "https://5f3a062e2300b100169a84f7.mockapi.io"
-      },
-      {
-        "path": "/m2",
-        "auth": true,
-        "target": "https://5f3a062e2300b100169a84f7.mockapi.io"
+        "target": "https://5f3a062e2300b100169a84f7.mockapi.io",
+        "endpoint": "/movies",
+        "routes": [
+          {
+            "method": "get",
+            "path": "/movie",
+            "timeout": 5
+          },
+          {
+            "method": "get",
+            "path": "/movie/:id",
+            "timeout": 5
+          }
+        ]
       }
     ]
   }
