@@ -5,8 +5,23 @@
  * @returns {}
  */
 const auth = (req, res, next) => {
-  console.log('1111111111');
-  next();
+
+  //Just for test.
+  const key = '123456';
+
+  //Deny access if the authorization header is not present.
+  if (!(req && req.headers && req.headers.authorization))
+    return res.status(403).json({});
+
+  //Get the header.
+  const auth = req.headers.authorization;
+
+  //Compare authorization header with key.
+  if (auth === key)
+    next();
+  else
+    return res.status(403).json({});
+
 };
 
 module.exports = {
