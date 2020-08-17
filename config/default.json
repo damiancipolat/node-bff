@@ -1,8 +1,18 @@
 {
-  "server":{
-    "port":"8080"
+  "server": {
+    "port": "8080"
   },
-  "proxy":{
-    "host":"/opa"
+  "proxy": {
+    "map": [
+      {
+        "path": "/m1",
+        "target": "https://5f3a062e2300b100169a84f7.mockapi.io"
+      },
+      {
+        "path": "/m2",
+        "auth": true,
+        "target": "https://5f3a062e2300b100169a84f7.mockapi.io"
+      }
+    ]
   }
 }
