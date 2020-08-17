@@ -1,0 +1,27 @@
+{
+  "name": "bff",
+  "version": "1.0.0",
+  "description": "A microservice bff example using node.js and fastify.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damiancipolat/node-bff.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damiancipolat/node-bff/issues"
+  },
+  "homepage": "https://github.com/damiancipolat/node-bff#readme",
+  "dependencies": {
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.2",
+    "http-proxy-middleware": "^1.0.5",
+    "i": "^0.3.6",
+    "npm": "^6.14.7"
+  }
+}
