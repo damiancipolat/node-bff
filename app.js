@@ -14,6 +14,10 @@ const {
   proxy
 } = require('./routes');
 
+const {
+  notFound
+} = require('./middleware');
+
 //Get values from configuration.
 const {
   port
@@ -26,6 +30,7 @@ const {
 //Define the middlewares..
 app.use('/health', health);
 app.use('/', proxy(map));
+app.use('*', notFound);
 
 //On server listen.
 app.listen(port, () => {

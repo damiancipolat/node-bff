@@ -4,7 +4,8 @@
   "description": "A microservice bff example using node.js and fastify.",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": ". ./tag.sh && docker build . -t $PACKAGE_TAG"
   },
   "repository": {
     "type": "git",

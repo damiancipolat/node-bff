@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const {
+  notFound
+} = require('../middleware/index');
+
 /**
  * Health controller.
  * @param {req} express request
@@ -8,14 +12,6 @@ const router = express.Router();
  * @returns {}
  */
 const health = (req, res) => res.status(200).json({ health: "ok" });
-
-/**
- * Not found controller.
- * @param {req} express request
- * @param {res} express response
- * @returns {}
- */
-const notFound = (req, res) => res.status(404).json({});
 
 //Bind routes with controller.
 router.get('/ready', health);

@@ -5,17 +5,12 @@
   "proxy": {
     "map": [
       {
-        "target": "https://5f3a062e2300b100169a84f7.mockapi.io",
-        "endpoint": "/movies",
+        "target": "https://jsonplaceholder.typicode.com",
+        "endpoint": "/post-service",
         "routes": [
           {
             "method": "get",
-            "path": "/movie"
-          },
-          {
-            "method": "get",
-            "path": "/movie/:id",
-            "auth": true
+            "path": "/posts"
           }
         ]
       }
